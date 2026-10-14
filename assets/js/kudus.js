@@ -18,8 +18,8 @@
     switches.forEach((b) => {
       b.setAttribute('aria-pressed', String(dark));
       const label = b.querySelector('[data-isik-etiket]');
+      // the visible words are the accessible name; aria-pressed carries the state
       if (label) label.textContent = dark ? 'Işıkları söndür' : 'Işıkları yak';
-      b.setAttribute('aria-label', dark ? 'Gündüz görünümüne geç' : 'Gece görünümüne geç');
     });
     if (animate && dark && !reduce) {
       // every lamp on the page comes on, nearest the switch first
@@ -77,15 +77,15 @@
     const end = () => {
       acilis.classList.add('is-kalkiyor');
       store.sset('hk-acilis', '1');
-      setTimeout(() => { acilis.remove(); doc.classList.remove('has-acilis'); }, 760);
+      setTimeout(() => { acilis.remove(); doc.classList.remove('has-acilis'); }, 640);
     };
     if (reduce || store.sget('hk-acilis') || !window.Mahya) { acilis.remove(); doc.classList.remove('has-acilis'); }
     else {
       const m = acilis.querySelector('.mahya');
-      const fail = setTimeout(end, 3200);
-      requestAnimationFrame(() => Mahya.light(m, { duration: 1050 }).then(() => {
+      const fail = setTimeout(end, 2600);
+      requestAnimationFrame(() => Mahya.light(m, { duration: 820 }).then(() => {
         acilis.classList.add('is-yandi');
-        setTimeout(() => { clearTimeout(fail); end(); }, 520);
+        setTimeout(() => { clearTimeout(fail); end(); }, 380);
       }));
       acilis.addEventListener('click', () => { clearTimeout(fail); end(); }, { once: true });
     }

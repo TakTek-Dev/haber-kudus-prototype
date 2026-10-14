@@ -3,12 +3,12 @@
 /* ---------- opening ---------- */
 #acilis{display:none}
 .has-acilis #acilis{display:grid;position:fixed;inset:0;z-index:90;place-items:center;background:linear-gradient(180deg,var(--gece-0),var(--gece) 60%,#16234f);
-  clip-path:inset(0 0 0 0);transition:clip-path 700ms var(--ease-in-out);animation:acilis-son 0s 4.2s forwards}
+  clip-path:inset(0 0 0 0);transition:clip-path 600ms var(--ease-in-out);animation:acilis-son 0s 3.4s forwards}
 .has-acilis body{overflow:hidden}
 #acilis .acilis__sahne{position:relative;width:min(980px,86vw);display:grid;gap:22px;justify-items:center}
 #acilis .mahya{width:100%}
 #acilis .mahya__rope{opacity:.3}
-#acilis p{font:600 13px/1 var(--f-head);letter-spacing:.24em;text-transform:uppercase;color:var(--gece-muted);opacity:0;transition:opacity 400ms var(--ease-out)}
+#acilis p{font:600 13.5px/1 var(--f-head);letter-spacing:.24em;text-transform:uppercase;color:var(--gece-muted);opacity:0;transition:opacity 400ms var(--ease-out)}
 #acilis.is-yandi p{opacity:1}
 #acilis.is-kalkiyor{clip-path:inset(0 0 100% 0)}
 #acilis.is-kalkiyor .acilis__sahne{transform:translateY(-6vh);opacity:0;transition:transform 700ms var(--ease-in-out),opacity 500ms var(--ease-out)}
@@ -17,7 +17,7 @@
 /* ---------- the sky: utility row, masthead, sections ---------- */
 .gok{position:relative;overflow-x:clip;background:linear-gradient(180deg,var(--gece-0) 0%,var(--gece) 70%,#121d44 100%);color:var(--gece-text);isolation:isolate}
 .gok .wrap{position:relative}
-.gok__ust{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:40px;font:500 13px/1.3 var(--f-text);color:var(--gece-muted);border-bottom:1px solid var(--gece-line);position:relative;z-index:3}
+.gok__ust{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:40px;font:500 13.5px/1.3 var(--f-text);color:var(--gece-muted);border-bottom:1px solid var(--gece-line);position:relative;z-index:3}
 .gok__ust .tarih b{color:var(--gece-text);font-weight:700}
 .gok__ust .saatler{display:flex;align-items:center;gap:14px}
 .gok__ust .saatler time{font-weight:700;color:var(--gece-text)}
@@ -31,14 +31,14 @@
 .mast__logo .mahya{width:100%}
 .mast__logo .mahya__rope{display:none}
 .mast__ip{position:absolute;inset-inline:22px;top:var(--ip,42px);height:1px;background:var(--gece-rig);opacity:.42;z-index:-1}
-.mast__soz{margin-top:12px;font:italic 500 14.5px/1.3 var(--f-text);color:var(--gece-muted);letter-spacing:.01em}
+.mast__soz{margin-top:12px;font:italic 500 15.5px/1.3 var(--f-text);color:var(--gece-muted);letter-spacing:.01em}
 .gok .minare{height:330px;bottom:0;z-index:0}
 .gok .minare[data-minare="sol"]{inset-inline-start:-6px}
 .gok .minare[data-minare="sag"]{inset-inline-end:-6px}
 
 .bolumler{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--gece-line)}
 .bolumler ul{display:flex;align-items:center;gap:2px;margin-inline:auto}
-.bolumler a{position:relative;display:flex;align-items:center;min-height:52px;padding:0 13px;font:700 15px/1 var(--f-head);letter-spacing:.07em;text-transform:uppercase;color:var(--gece-muted);transition:color var(--t-fast) var(--ease-out)}
+.bolumler a{position:relative;display:flex;align-items:center;min-height:52px;padding:0 13px;font:700 15.5px/1 var(--f-head);letter-spacing:.07em;text-transform:uppercase;color:var(--gece-muted);transition:color var(--t-fast) var(--ease-out)}
 .bolumler a:hover{color:var(--gece-text);text-decoration:none}
 .bolumler a::after{content:"";position:absolute;left:50%;bottom:7px;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--kandil);opacity:0;transform:scale(.3);transition:opacity var(--t-mid) var(--ease-out),transform var(--t-mid) var(--ease-out);box-shadow:0 0 8px 2px rgba(255,170,60,.55)}
 .bolumler a:hover::after{opacity:.55;transform:scale(.7)}
@@ -48,6 +48,12 @@
 .arac{display:grid;place-items:center;width:44px;height:44px;color:var(--gece-text)}
 .arac:hover{color:var(--kandil)}
 .menu-dugme{display:none}
+
+/* live: the one red entry in the sky */
+.canli-dugme{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;font:700 13.5px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:#ff9da0;border:1px solid transparent;transition:color var(--t-fast) var(--ease-out),border-color var(--t-fast) var(--ease-out)}
+.canli-dugme:hover{color:#fff;border-color:rgba(255,109,114,.45);text-decoration:none}
+.canli-dugme[aria-current="page"]{color:#fff;border-color:rgba(255,109,114,.6)}
+.canli-dugme .lamp{width:8px;height:8px}
 
 /* the lights switch: a lamp that is on or off */
 .isik-dugme{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 12px;font:700 13.5px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--gece-text);border:1px solid var(--gece-line)}
@@ -62,13 +68,13 @@
 .sondakika__ad .mahya{height:18px;width:auto}
 .sondakika__ad .mahya .mahya__lamps circle{fill:#ff6d72}
 .sondakika__ad .mahya .mahya__halos circle{fill:rgba(255,80,90,.22)}
-.sondakika time{font:800 18px/1 var(--f-num);color:var(--kandil);letter-spacing:.02em}
+.sondakika time{font:800 17.5px/1 var(--f-num);color:var(--kandil);letter-spacing:.02em}
 .sondakika__satir{position:relative;min-width:0;overflow:hidden}
-.sondakika__satir a{display:block;font:600 16.5px/1.35 var(--f-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sondakika__satir a{display:block;font:600 17.5px/1.35 var(--f-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sondakika__satir a.is-yaniyor{animation:yazi-yan 700ms var(--ease-out) both}
 @keyframes yazi-yan{from{-webkit-mask-position:100% 0;mask-position:100% 0}to{-webkit-mask-position:0 0;mask-position:0 0}}
 .sondakika__satir a{-webkit-mask-image:linear-gradient(90deg,#000 45%,rgba(0,0,0,.08) 55%);mask-image:linear-gradient(90deg,#000 45%,rgba(0,0,0,.08) 55%);-webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-position:0 0;mask-position:0 0}
-.sondakika__kontrol{display:flex;align-items:center;gap:2px;font:600 13px/1 var(--f-text);color:var(--gece-muted)}
+.sondakika__kontrol{display:flex;align-items:center;gap:2px;font:600 13.5px/1 var(--f-text);color:var(--gece-muted)}
 .sondakika__kontrol button{display:grid;place-items:center;width:40px;height:40px;color:var(--gece-text)}
 .sondakika__kontrol button:hover{color:var(--kandil)}
 .sondakika__kontrol .sira{min-width:36px;text-align:center}
@@ -84,7 +90,7 @@
 .manset__foto .foto{aspect-ratio:16/10.2}
 .gelisme{border-top:1px solid var(--ink);margin-top:4px}
 .gelisme li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.45}
-.gelisme time{display:flex;align-items:center;gap:7px;font:800 16px/1.4 var(--f-num);letter-spacing:.02em}
+.gelisme time{display:flex;align-items:center;gap:7px;font:800 15.5px/1.4 var(--f-num);letter-spacing:.02em}
 .gelisme time .lamp{width:7px;height:7px}
 .gelisme .kaynak{display:block;margin-top:3px}
 
@@ -94,22 +100,22 @@
 
 /* today's thread: lamps hanging on one vertical rope */
 .akis h2,.vakit h2{font:800 24px/1 var(--f-head);display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--ink);margin-bottom:6px}
-.akis h2 small,.vakit h2 small{font:600 13px/1 var(--f-text);color:var(--muted)}
+.akis h2 small,.vakit h2 small{font:600 13.5px/1 var(--f-text);color:var(--muted)}
 .ip-akis{position:relative;padding-inline-start:26px}
 .ip-akis::before{content:"";position:absolute;inset-inline-start:7px;top:0;bottom:0;width:1px;background:var(--line-2)}
 .ip-akis li{position:relative;padding:12px 0;border-bottom:1px solid var(--line)}
 .ip-akis li:last-child{border-bottom:0}
 .ip-akis .lamp{position:absolute;inset-inline-start:-23px;top:17px}
-.ip-akis time{display:block;font:800 15px/1 var(--f-num);letter-spacing:.03em;color:var(--ink)}
-.ip-akis h3{font:600 16px/1.38 var(--f-text);margin-top:5px;text-wrap:pretty}
+.ip-akis time{display:block;font:800 15.5px/1 var(--f-num);letter-spacing:.03em;color:var(--ink)}
+.ip-akis h3{font:600 15.5px/1.38 var(--f-text);margin-top:5px;text-wrap:pretty}
 .ip-akis .yer{font:700 12px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-inline-start:8px}
 .ip-akis li.eski time,.ip-akis li.eski h3{color:var(--ink-2)}
-.ip-akis .tum{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:6px;font:700 14px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase}
+.ip-akis .tum{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:6px;font:700 13.5px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase}
 
 .ikinci{display:flex;flex-direction:column;gap:22px}
 .haber-buyuk .foto{aspect-ratio:3/2}
 .haber-buyuk h3{margin:14px 0 8px}
-.haber-buyuk p{font-size:16px;line-height:1.55;color:var(--ink-2)}
+.haber-buyuk p{font-size:15.5px;line-height:1.55;color:var(--ink-2)}
 .haber-buyuk .meta{margin-top:10px}
 .haber-satir{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:16px;padding-top:18px;border-top:1px solid var(--line)}
 .haber-satir .foto{aspect-ratio:1}
@@ -118,18 +124,18 @@
 
 /* number of the day: lamps on a strip of night */
 .rakam{background:var(--gece);color:var(--gece-text);padding:20px 20px 18px;position:relative}
-.rakam__ad{font:700 12.5px/1 var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--kandil)}
+.rakam__ad{font:700 12px/1 var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--kandil)}
 .rakam .mahya{height:118px;width:auto;max-width:100%;margin:20px 0 14px}
 .rakam .mahya .mahya__rope{opacity:.3}
-.rakam p{font-size:15px;line-height:1.45;color:var(--gece-text)}
+.rakam p{font-size:15.5px;line-height:1.45;color:var(--gece-text)}
 .rakam .kaynak{color:var(--gece-muted);margin-top:10px;display:block;padding-top:10px;border-top:1px solid var(--gece-line)}
 .rakam .kaynak b{color:var(--gece-text)}
 
 .vakit{margin-top:24px}
 .vakit ol{border-top:1px solid var(--ink)}
-.vakit li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.vakit li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15.5px}
 .vakit li span{display:flex;align-items:center;gap:9px}
-.vakit li time{font:800 17px/1 var(--f-num);letter-spacing:.03em}
+.vakit li time{font:800 17.5px/1 var(--f-num);letter-spacing:.03em}
 .vakit li.sirada{font-weight:700}
 .vakit li.gecti{color:var(--muted)}
 .vakit .not{margin-top:10px}
@@ -140,7 +146,7 @@
 .aksa{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4vw,56px);align-items:start}
 .aksa > *{min-width:0}
 .kandil-grafik{position:relative}
-.kandil-grafik__alan{position:relative;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);align-items:end;gap:6px;height:360px;padding-top:12px;border-bottom:1px solid var(--gece-line)}
+.kandil-grafik__alan{position:relative;margin-top:30px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);align-items:end;gap:6px;height:360px;padding-top:12px;border-bottom:1px solid var(--gece-line)}
 .kandil-grafik__alan::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:var(--gece-rig);opacity:.42}
 .sutun{position:relative;display:flex;flex-direction:column-reverse;align-items:center;gap:4px;height:100%;padding-bottom:8px}
 .sutun::before{content:"";position:absolute;top:0;bottom:8px;left:50%;width:1px;background:var(--gece-rig);opacity:.16}
@@ -154,7 +160,7 @@
 .sutun.zirve i{background:radial-gradient(circle at 42% 38%,#fff6d1 0 16%,#ffcf4a 50%,#e09a1c)}
 .kandil-grafik__gun{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:6px;margin-top:8px;font:700 12px/1.2 var(--f-head);letter-spacing:.04em;text-transform:uppercase;color:var(--gece-muted);text-align:center}
 .kandil-grafik__gun span.bayram{color:var(--kandil)}
-.kandil-grafik__lejant{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;font-size:14px;color:var(--gece-muted)}
+.kandil-grafik__lejant{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;font-size:13.5px;color:var(--gece-muted)}
 .kandil-grafik__lejant span{display:inline-flex;align-items:center;gap:8px}
 .aksa__haber{display:flex;flex-direction:column;gap:0}
 .aksa__haber article{padding:16px 0;border-bottom:1px solid var(--gece-line)}
@@ -169,7 +175,7 @@
 .mahalle__metin{padding:16px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
 .mahalle__ad{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .mahalle__ad b{font:800 22px/1 var(--f-head)}
-.mahalle__ad span{display:inline-flex;align-items:center;gap:7px;font:600 13px/1 var(--f-text);color:var(--muted)}
+.mahalle__ad span{display:inline-flex;align-items:center;gap:7px;font:600 13.5px/1 var(--f-text);color:var(--muted)}
 .mahalle h3{font:700 17.5px/1.3 var(--f-head)}
 .mahalle .kaynak{margin-top:auto}
 
@@ -192,14 +198,14 @@
 .tani__izgara article:first-child .foto{aspect-ratio:12/11}
 .tani__izgara .foto{aspect-ratio:16/10}
 .tani__izgara h3{margin:12px 0 6px}
-.tani__izgara p{font-size:15px;line-height:1.55;color:var(--ink-2)}
+.tani__izgara p{font-size:15.5px;line-height:1.55;color:var(--ink-2)}
 
 /* ---------- analysis ---------- */
 .analiz{padding-block:clamp(48px,6vw,80px)}
 .analiz__izgara{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
 .analiz__izgara article{padding:20px 24px 4px;border-inline-start:1px solid var(--line);min-width:0}
 .analiz__izgara article:first-child{padding-inline-start:0;border-inline-start:0}
-.analiz__izgara .yazar{font:700 12.5px/1.3 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.analiz__izgara .yazar{font:700 12px/1.3 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .analiz__izgara h3{font:600 22px/1.25 var(--f-text);margin:10px 0 10px;text-wrap:balance}
 .analiz__izgara p{font-size:15.5px;line-height:1.55;color:var(--ink-2)}
 .yer-tutucu{display:inline-block;border:1px dashed var(--line-2);padding:2px 8px;font:600 12px/1.4 var(--f-text);color:var(--muted);text-transform:none;letter-spacing:0}
@@ -208,20 +214,20 @@
 .bulten{background:var(--gece);color:var(--gece-text);position:relative;overflow:hidden}
 .bulten .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,4vw,64px);align-items:center;padding-block:clamp(44px,5vw,64px)}
 .bulten h2{font:800 clamp(30px,3.4vw,44px)/1.04 var(--f-head)}
-.bulten p{color:var(--gece-muted);font-size:16.5px;margin-top:10px;max-width:48ch}
+.bulten p{color:var(--gece-muted);font-size:17.5px;margin-top:10px;max-width:48ch}
 .bulten form{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--gece-line)}
 .bulten label{flex:1 1 100%;font:700 12px/1 var(--f-head);letter-spacing:.09em;text-transform:uppercase;color:var(--gece-muted);padding:12px 14px 0}
-.bulten input{flex:1 1 240px;min-width:0;min-height:52px;background:transparent;border:0;color:var(--gece-text);padding:0 14px;font-size:17px}
+.bulten input{flex:1 1 240px;min-width:0;min-height:52px;background:transparent;border:0;color:var(--gece-text);padding:0 14px;font-size:17.5px}
 .bulten input::placeholder{color:#8790b3}
 .bulten input:focus{outline:none}
 .bulten form:focus-within{border-color:var(--kandil);box-shadow:0 0 0 4px var(--kandil-soft)}
 .bulten .btn{background:var(--kandil);color:#0f1838;border-color:var(--kandil);min-height:52px;margin:6px}
 .bulten .btn:hover{background:transparent;color:var(--kandil)}
-.bulten .durum{flex:1 1 100%;padding:0 14px 12px;font-size:14px;color:var(--gece-muted);min-height:1.4em}
+.bulten .durum{flex:1 1 100%;padding:0 14px 12px;font-size:13.5px;color:var(--gece-muted);min-height:1.4em}
 .bulten .durum.hata{color:#ff9da0}
 .bulten .durum.tamam{color:var(--kandil)}
 .takip{display:flex;flex-wrap:wrap;gap:8px 4px;margin-top:22px}
-.takip a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 12px 0 0;font:700 14px/1 var(--f-head);letter-spacing:.06em;text-transform:uppercase;color:var(--gece-text)}
+.takip a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 12px 0 0;font:700 13.5px/1 var(--f-head);letter-spacing:.06em;text-transform:uppercase;color:var(--gece-text)}
 .takip a:hover{color:var(--kandil);text-decoration:none}
 .takip svg{width:18px;height:18px}
 
@@ -233,13 +239,13 @@
 .dip__mahya .mahya{width:min(960px,100%);margin-inline:auto}
 .dip__mahya .mahya__rope{opacity:.28}
 .dip__izgara{display:grid;grid-template-columns:minmax(0,4fr) repeat(3,minmax(0,2fr));gap:clamp(24px,3vw,40px);padding:28px 0 36px;border-top:1px solid var(--gece-line)}
-.dip__izgara h2{font:700 13px/1 var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--gece-muted);margin-bottom:12px}
-.dip__izgara li a{display:inline-flex;align-items:center;min-height:34px;font-size:15px;color:var(--gece-text)}
-.dip__izgara p{font-size:14.5px;line-height:1.6;color:var(--gece-muted)}
+.dip__izgara h2{font:700 13.5px/1 var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--gece-muted);margin-bottom:12px}
+.dip__izgara li a{display:inline-flex;align-items:center;min-height:34px;font-size:15.5px;color:var(--gece-text)}
+.dip__izgara p{font-size:15.5px;line-height:1.6;color:var(--gece-muted)}
 .dip__izgara .marka{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .dip__izgara .marka svg{width:44px;height:44px}
 .dip__izgara .marka b{font:800 22px/1 var(--f-head)}
-.dip__alt{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding:16px 0 28px;border-top:1px solid var(--gece-line);font-size:13px;color:var(--gece-muted)}
+.dip__alt{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding:16px 0 28px;border-top:1px solid var(--gece-line);font-size:13.5px;color:var(--gece-muted)}
 .dip__alt a{color:var(--gece-text)}
 
 /* search: a drawer under the sky */
@@ -247,30 +253,30 @@
 .ara.is-acik,.no-js .ara:target{display:block}
 .ara .wrap{padding-block:18px 22px}
 .ara label{display:block;font:700 12px/1 var(--f-head);letter-spacing:.09em;text-transform:uppercase;color:var(--gece-muted);margin-bottom:8px}
-.ara input{width:100%;min-height:52px;background:var(--gece);border:1px solid var(--gece-line);color:var(--gece-text);padding:0 16px;font:600 18px/1 var(--f-text)}
+.ara input{width:100%;min-height:52px;background:var(--gece);border:1px solid var(--gece-line);color:var(--gece-text);padding:0 16px;font:600 17.5px/1 var(--f-text)}
 .ara input:focus{outline:none;border-color:var(--kandil);box-shadow:0 0 0 4px var(--kandil-soft)}
-.ara__durum{font-size:14px;color:var(--gece-muted);margin-top:10px}
+.ara__durum{font-size:13.5px;color:var(--gece-muted);margin-top:10px}
 .ara__sonuc li a{display:block;padding:10px 0;border-bottom:1px solid var(--gece-line);font-weight:600}
 .is-bulundu{animation:bulundu 2.4s var(--ease-out)}
 @keyframes bulundu{0%,40%{background:var(--kandil-soft)}100%{background:transparent}}
 .gok__ust .hava{font-weight:600}
 
 /* today's thread: the day boundary and the reveal */
-.ip-akis li.gun{padding:14px 0 6px;font:700 12.5px/1 var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:0}
-.daha{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:4px;font:700 14px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line-2)}
+.ip-akis li.gun{padding:14px 0 6px;font:700 12px/1 var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:0}
+.daha{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:4px;font:700 13.5px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line-2)}
 .daha:hover{border-color:var(--kandil-2)}
-.haber-buyuk figcaption{margin-top:8px;font-size:12.5px}
+.haber-buyuk figcaption{margin-top:8px;font-size:12px}
 
 /* when there is no photo, the number is lit instead */
 .rakam-gorsel{aspect-ratio:4/3;background:var(--gece);display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:0 14%;color:var(--gece-rig)}
 .rakam-gorsel .mahya{width:100%;max-height:62%}
 .rakam-gorsel .mahya__rope{opacity:.28}
 .tani__izgara .rakam-gorsel{aspect-ratio:16/10}
-.grafik-not{font-size:16px;line-height:1.55;color:var(--gece-muted);margin:10px 0 40px;max-width:58ch}
+.grafik-not{font-size:15.5px;line-height:1.55;color:var(--gece-muted);margin:10px 0 40px;max-width:58ch}
 .aksa__haber .ozet{font-size:15.5px;line-height:1.55;color:var(--ink-2);margin:8px 0 10px}
 .aksa__haber h3{margin-top:2px}
 .aksa__haber .h-3 a,.sade-liste a,.ip-akis a,.mahalle h3 a{text-decoration-thickness:1.5px}
-.takip span{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding-inline-end:14px;font:700 14px/1 var(--f-head);letter-spacing:.06em;text-transform:uppercase;color:var(--gece-text)}
+.takip span{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding-inline-end:14px;font:700 13.5px/1 var(--f-head);letter-spacing:.06em;text-transform:uppercase;color:var(--gece-text)}
 .takip .takip__not{flex-basis:100%;font:500 13.5px/1.4 var(--f-text);letter-spacing:0;text-transform:none;color:var(--gece-muted);min-height:0}
 .takip svg{width:18px;height:18px}
 
@@ -302,14 +308,14 @@
 @media (max-width:760px){
   .gok__ust .tarih .hicri,.gok__ust .sosyal,.gok__ust .hava,.gok__ust .saatler > span:nth-child(3){display:none}
   .gok__ust .tarih b{font-weight:600}
-  .gok__ust{font-size:12.5px}
+  .gok__ust{font-size:12px}
   .mast{padding:22px 0 14px}
   .mast__logo{width:min(320px,76vw)}
-  .mast__soz{font-size:13px}
+  .mast__soz{font-size:13.5px}
   .gok .minare{height:210px;bottom:0}
   .gok .minare[data-minare="sol"]{inset-inline-start:-10px}
   .gok .minare[data-minare="sag"]{inset-inline-end:-10px}
-  .isik-dugme [data-isik-etiket]{display:none}
+  .isik-dugme [data-isik-etiket]{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
   .isik-dugme{width:44px;justify-content:center;padding:0}
   .sondakika .wrap{grid-template-columns:auto minmax(0,1fr);gap:6px 12px;padding-block:10px}
   .sondakika__ad{grid-column:1}
@@ -323,10 +329,10 @@
   .sira-2 .yan{grid-template-columns:1fr}
   .haber-satir{grid-template-columns:minmax(0,1fr) 96px}
   .kandil-grafik__alan{height:220px;gap:3px}
-  .kandil-grafik__gun{gap:3px;font-size:10.5px}
+  .kandil-grafik__gun{gap:3px;font-size:12px}
   .kandil-grafik__alan{height:300px}
   .sutun i,.sutun i.yarim{width:10px;height:10px}
-  .sutun b{font-size:16px}
+  .sutun b{font-size:15.5px}
   .sayi-satir{grid-template-columns:104px minmax(0,1fr)}
   .sayi-satir .mahya{height:32px}
   .mahalle-izgara{grid-template-columns:1fr}

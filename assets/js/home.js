@@ -82,7 +82,7 @@
     const open = daha.getAttribute('aria-expanded') !== 'true';
     $$('[data-daha]').forEach((li) => { li.hidden = !open; });
     daha.setAttribute('aria-expanded', String(open));
-    daha.textContent = open ? 'Daha az göster' : 'Dünden 3 haber daha';
+    daha.textContent = open ? 'Daha az göster' : 'Dünden 3 haber daha göster';
   });
 
   /* ---------- search the edition on this page ---------- */
@@ -105,7 +105,7 @@
       list.innerHTML = '';
       if (v.length < 2) { say.textContent = 'En az iki harf yazın.'; return; }
       const hits = index.filter((x) => norm(x.text).includes(v)).slice(0, 8);
-      say.textContent = hits.length ? `Bugünkü sayıda ${hits.length} sonuç.` : `«${q.value.trim()}» bugünkü sayıda geçmiyor.`;
+      say.textContent = hits.length ? `Bugünkü sayıda ${hits.length} sonuç bulundu.` : `«${q.value.trim()}» bugünkü sayıda geçmiyor.`;
       hits.forEach((h) => {
         const li = document.createElement('li');
         const a = document.createElement('a');
@@ -125,14 +125,14 @@
       const v = input.value.trim();
       msg.classList.remove('hata', 'tamam');
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
-        msg.textContent = 'E-posta adresi eksik görünüyor. Örnek: ad@ornek.com';
+        msg.textContent = 'E-posta adresi eksik ya da hatalı görünüyor. Örnek: ad@ornek.com';
         msg.classList.add('hata');
         input.setAttribute('aria-invalid', 'true');
         input.focus();
         return;
       }
       input.removeAttribute('aria-invalid');
-      msg.textContent = 'Bu bir tasarım örneği: adres kaydedilmedi. Yayına geçince ilk bülten yarın 07.00\'de gelir.';
+      msg.textContent = 'Bu bir tasarım örneği; adresiniz kaydedilmedi. Site yayına geçtiğinde bülten her sabah 07.00\'de gönderilecek.';
       msg.classList.add('tamam');
     });
   }

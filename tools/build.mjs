@@ -105,10 +105,23 @@ const regions = {
   'mark-day': () => markU({ mode: 'day', size: 240, id: 'bd', inline: true }),
   'son-dakika': () => M.svg('Son dakika', { mode: 'night', id: 'sd', rope: false, pad: 1.4, r: 0.78, halo: 2.4, attrs: 'data-mahya="son-dakika"' })
 };
+// shared chrome: <!--@parca:NAME|CURRENT--> pulls tools/parca/NAME.html and marks the current section
+function parts(html) {
+  return html.replace(/<!--@parca:([\w-]+)(?:\|([\w-]+))?-->[\s\S]*?<!--\/@parca-->/g, (m, name, cur) => {
+    const body = readFileSync(P(`tools/parca/${name}.html`), 'utf8')
+      .replace(/\{\{cur:([\w-]+)\}\}/g, (x, k) => (k === cur ? ' aria-current="page"' : ''))
+      .trimEnd();
+    return `<!--@parca:${name}${cur ? '|' + cur : ''}-->
+${body}
+<!--/@parca-->`;
+  });
+}
+
 // extra named messages: <!--@mahya:say|ID|MODE|TEXT-->
-for (const page of ['index.html', 'home.html']) {
+for (const page of ['index.html', 'home.html', 'haber.html', 'aksa.html', 'canli.html', 'hakkimizda.html']) {
   let html;
   try { html = readFileSync(P(page), 'utf8'); } catch { continue; }
+  html = parts(html);
   html = html.replace(/<!--@mahya:([^>]+?)-->[\s\S]*?<!--\/@mahya-->/g, (m, key) => {
     let out;
     if (key.startsWith('mark|')) {

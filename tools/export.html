@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Haber Kudüs — dışa aktarım</title>
+<link rel="stylesheet" href="../assets/css/fonts.css?v=2">
+<link rel="stylesheet" href="../assets/css/kudus.css?v=2">
+<style>
+html,body{margin:0;background:#0f1838;overflow:hidden}
+.sahne{position:relative;overflow:hidden;background:linear-gradient(180deg,#0a1230 0%,#0f1838 60%,#16234f 100%);color:#eef0f7}
+.sahne.gun{background:#f4f6fa;color:#0f1838}
+.sahne .ip{position:absolute;left:0;right:0;height:var(--ipk,2px);background:#7d8fca;opacity:.42}
+.sahne .minare{position:absolute;bottom:0;height:auto;width:auto}
+.sahne .mahya__rope{display:none}
+.sahne .yazi{position:absolute;left:0;right:0;text-align:center;font-family:var(--f-text)}
+.sahne .yer-isareti{position:absolute;outline:2px dashed rgba(255,193,94,.0)}
+</style>
+<script src="../assets/js/mahya.js?v=2"></script>
+</head>
+<body>
+<div id="s" class="sahne"></div>
+<script>
+// ?k=<key> renders one export at its exact pixel size
+const k = new URLSearchParams(location.search).get('k') || 'og-ana';
+const s = document.getElementById('s');
+const minare = (h, side, inset) => `<img class="minare" src="../assets/brand/minare.svg?v=2" style="height:${h}px;${side}:${inset}px;bottom:${-h * 0.22}px" alt="">`;
+const lit = (text, id, o) => Mahya.svg(text, Object.assign({ mode: 'night', id }, o || {}));
+const ropeAt = (svgW, svgH, vb) => (Mahya.ROPE - vb[1]) / vb[3] * svgH;
+function scene(W, H, opts) {
+  s.style.width = W + 'px'; s.style.height = H + 'px';
+  const svg = lit(opts.text || 'Haber Kudüs', 'ex', opts.mahya);
+  const vb = svg.match(/viewBox="([^"]+)"/)[1].split(' ').map(Number);
+  const w = opts.w, h = w * vb[3] / vb[2];
+  const x = (W - w) / 2, y = opts.y != null ? opts.y : (H - h) / 2 - (opts.lift || 0);
+  let html = '';
+  if (opts.minare) html += minare(opts.minare, 'left', opts.inset || 24) + minare(opts.minare, 'right', opts.inset || 24);
+  html += `<span class="ip" style="top:${y + ropeAt(w, h, vb)}px;left:${opts.ropeIn || 0}px;right:${opts.ropeIn || 0}px;--ipk:${Math.max(1, Math.round(W / 900))}px"></span>`;
+  html += `<div style="position:absolute;left:${x}px;top:${y}px;width:${w}px">${svg}</div>`;
+  if (opts.alt) html += `<div class="yazi" style="top:${y + h + opts.altGap}px;font:italic 500 ${opts.altSize}px/1.2 var(--f-text);color:#aab2cf">${opts.alt}</div>`;
+  if (opts.ust) html += `<div class="yazi" style="top:${opts.ustY}px;font:700 ${opts.ustSize}px/1 var(--f-head);letter-spacing:.22em;text-transform:uppercase;color:#aab2cf">${opts.ust}</div>`;
+  s.innerHTML = html;
+}
+function mark(W, mode) {
+  s.style.width = W + 'px'; s.style.height = W + 'px';
+  if (mode === 'gun') s.classList.add('gun');
+  s.innerHTML = `<img src="../assets/brand/${W <= 64 ? 'favicon' : mode === 'gun' ? 'isaret-gunduz' : 'isaret-gece'}.svg?v=2" style="width:${W}px;height:${W}px;display:block" alt="">`;
+}
+const jobs = {
+  'og-ana': () => scene(1200, 630, { w: 860, minare: 640, inset: 30, ropeIn: 56, lift: 34, alt: "Kudüs'ten, saati saatine.", altGap: 34, altSize: 30, ust: 'Kudüs haberleri · Türkçe', ustY: 70, ustSize: 18 }),
+  'og-kitap': () => scene(1200, 630, { w: 860, minare: 640, inset: 30, ropeIn: 56, lift: 34, alt: 'Kimlik kılavuzu · Mahyadan doğan bir haber kimliği', altGap: 34, altSize: 28, ust: 'Haber Kudüs', ustY: 70, ustSize: 18 }),
+  'x-kapak': () => scene(1500, 500, { w: 860, minare: 560, inset: 40, ropeIn: 70, lift: 24, alt: "Kudüs'ten, saati saatine.", altGap: 26, altSize: 26 }),
+  'yt-kapak': () => scene(2560, 1440, { w: 1260, minare: 1100, inset: 120, ropeIn: 160, lift: 30, alt: "Kudüs'ten, saati saatine.", altGap: 34, altSize: 40 }),
+  'logo-gece': () => scene(2400, 640, { w: 2100, lift: 0 }),
+  'logo-gunduz': () => { s.classList.add('gun'); s.style.width = '2400px'; s.style.height = '640px'; s.innerHTML = `<div style="position:absolute;left:150px;top:110px;width:2100px">${Mahya.svg('Haber Kudüs', { mode: 'day', id: 'lg', r: .62 })}</div>`; },
+  'avatar': () => mark(1080, 'gece'),
+  'avatar-gunduz': () => mark(1080, 'gun'),
+  'apple-touch-icon': () => mark(180, 'gece'),
+  'icon-512': () => mark(512, 'gece'),
+  'favicon-32': () => mark(32, 'gece')
+};
+(jobs[k] || jobs['og-ana'])();
+document.title = k;
+</script>
+</body>
+</html>
