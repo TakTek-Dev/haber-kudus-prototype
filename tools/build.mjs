@@ -5,6 +5,11 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import vm from 'node:vm';
 
 const root = new URL('..', import.meta.url);
+
+// The article, section, live and about pages stay local until the client answers.
+// Set to true to link them from the header, footer and manşet (and un-ignore them in .gitignore).
+const YENI_SAYFALAR = false;
+const sec = (t) => t.replace(/<!--\?yeni-->([\s\S]*?)<!--\?eski-->([\s\S]*?)<!--\/\?-->/g, (m, y, e) => (YENI_SAYFALAR ? y : e));
 const P = (f) => new URL(f, root);
 vm.runInThisContext(readFileSync(P('assets/js/mahya.js'), 'utf8'));
 const M = globalThis.Mahya;
@@ -108,7 +113,7 @@ const regions = {
 // shared chrome: <!--@parca:NAME|CURRENT--> pulls tools/parca/NAME.html and marks the current section
 function parts(html) {
   return html.replace(/<!--@parca:([\w-]+)(?:\|([\w-]+))?-->[\s\S]*?<!--\/@parca-->/g, (m, name, cur) => {
-    const body = readFileSync(P(`tools/parca/${name}.html`), 'utf8')
+    const body = sec(readFileSync(P(`tools/parca/${name}.html`), 'utf8'))
       .replace(/\{\{cur:([\w-]+)\}\}/g, (x, k) => (k === cur ? ' aria-current="page"' : ''))
       .trimEnd();
     return `<!--@parca:${name}${cur ? '|' + cur : ''}-->
@@ -122,6 +127,7 @@ for (const page of ['index.html', 'home.html', 'haber.html', 'aksa.html', 'canli
   let html;
   try { html = readFileSync(P(page), 'utf8'); } catch { continue; }
   html = parts(html);
+  html = html.replace(/href="[^"]*"(\s+data-yeni="([^"]*)"\s+data-eski="([^"]*)")/g, (m, rest, y, e) => `href="${YENI_SAYFALAR ? y : e}"${rest}`);
   html = html.replace(/<!--@mahya:([^>]+?)-->[\s\S]*?<!--\/@mahya-->/g, (m, key) => {
     let out;
     if (key.startsWith('mark|')) {
