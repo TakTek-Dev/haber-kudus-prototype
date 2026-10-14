@@ -95,6 +95,9 @@ html{scrollbar-color:var(--line-2) transparent;scrollbar-width:thin}
 .mahya--day .mahya__lamps circle,.mahya--mono .mahya__lamps circle{fill:currentColor}
 .mahya--day .mahya__threads{opacity:.16;stroke-width:.04}
 .mahya--mono .mahya__rig{display:none}
+/* at night the day's ink numerals are lamps too */
+:root[data-theme="dark"] .mahya--mono .mahya__lamps circle{fill:var(--kandil)}
+:root[data-theme="dark"] .mahya--mono{filter:drop-shadow(0 0 2px rgba(255,170,60,.75)) drop-shadow(0 0 6px rgba(255,150,40,.35))}
 
 /* before the mahyacı lights it: dark glass on its thread */
 .mahya.is-armed .mahya__lamps circle{opacity:.16;transition:opacity 220ms var(--ease-out)}

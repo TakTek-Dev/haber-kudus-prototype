@@ -35,8 +35,21 @@
       time.textContent = it.saat;
       time.setAttribute('datetime', `2026-10-14T${it.saat.replace('.', ':')}+03:00`);
       sira.textContent = `${k + 1} / ${items.length}`;
-      if (!reduce) { link.classList.remove('is-yaniyor'); void link.offsetWidth; link.classList.add('is-yaniyor'); }
+      if (!reduce) write();
     };
+    // the lamp column writes the line: one step per lamp pitch (14px), same clock for edge and lamps
+    const satir = link.parentElement;
+    function write() {
+      satir.classList.remove('is-yaziyor'); link.classList.remove('is-yaniyor');
+      const w = Math.min(link.scrollWidth, satir.clientWidth);
+      const steps = Math.max(8, Math.round(w / 14));
+      satir.style.setProperty('--w', w + 'px'); link.style.setProperty('--w', w + 'px');
+      satir.style.setProperty('--adim', steps); link.style.setProperty('--adim', steps);
+      const sure = Math.min(1400, Math.max(700, steps * 22)) + 'ms';
+      satir.style.setProperty('--sure', sure); link.style.setProperty('--sure', sure);
+      void link.offsetWidth;
+      satir.classList.add('is-yaziyor'); link.classList.add('is-yaniyor');
+    }
     const tick = () => { clearTimeout(timer); if (!paused && !hovering) timer = setTimeout(() => { show(k + 1); tick(); }, 6000); };
     const setPaused = (p) => {
       paused = p;

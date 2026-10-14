@@ -191,7 +191,8 @@
       parts.push(`</g>`);
     }
     // order of lighting: left to right with a little lift for each stroke
-    const order = L.lamps.map((l, i) => [i, l.x + l.y * 0.18]).sort((a, b) => a[1] - b[1]);
+    // reading order, but the Ü's two dome lamps always come on last
+    const order = L.lamps.map((l, i) => [i, l.x + l.y * 0.18 + (l.role === 'kubbe' || l.role === 'kurşun' ? 1e6 + l.x : 0)]).sort((a, b) => a[1] - b[1]);
     const rank = new Array(L.lamps.length);
     order.forEach((p, k) => { rank[p[0]] = k; });
     if (mode === 'night') {

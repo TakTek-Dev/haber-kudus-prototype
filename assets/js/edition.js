@@ -15,7 +15,7 @@ window.EDITION = {
     { saat: '13.18', yer: 'Kudüs', isik: 'yanik', baslik: "Filistin, Kolombiya'nın Kudüs'te büyükelçilik açmasını kınadı", kaynak: 'WAFA' },
     { saat: '12.24', yer: 'Kudüs', isik: 'kisik', baslik: "Ebu Diyab: Kentte 23.280 yıkım kararı yürürlükte", kaynak: 'WAFA' },
     { saat: '12.22', yer: 'Esirler', isik: 'kisik', baslik: 'İsrail hapishanelerinde yaklaşık 9.400 Filistinli tutuluyor', kaynak: 'WAFA' },
-    { saat: '10.23', yer: 'İsaviye', isik: 'kisik', baslik: 'İsrail güçleri İsaviye'de bir çocuğu gözaltına aldı', kaynak: 'Kudüs Valiliği' },
+    { saat: '10.23', yer: 'İsaviye', isik: 'kisik', baslik: "İsrail güçleri İsaviye'de bir çocuğu gözaltına aldı", kaynak: 'Kudüs Valiliği' },
     { saat: '09.00', yer: 'Muhmas', isik: 'kisik', baslik: 'Yerleşimciler gece bir camiyi ateşe verdi', kaynak: 'Kudüs Valiliği' }
   ],
 

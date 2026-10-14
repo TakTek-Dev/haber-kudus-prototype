@@ -157,7 +157,7 @@ body{background:var(--gun)}
 .asici input:focus{border-color:var(--kandil);outline:none;box-shadow:0 0 0 4px var(--kandil-soft)}
 .asici .alan{flex:1 1 300px}
 .asici .ornekler{display:flex;flex-wrap:wrap;gap:8px 16px;padding:0 18px 18px;font-size:13.5px;color:var(--gece-muted)}
-.asici .ornekler button{color:var(--gece-text);text-decoration:underline;text-decoration-color:var(--gece-line);text-underline-offset:4px;min-height:32px}
+.asici .ornekler button{color:var(--gece-text);text-decoration:underline;text-decoration-color:var(--gece-line);text-underline-offset:4px;min-height:44px}
 .asici .ornekler button:hover{text-decoration-color:var(--kandil)}
 .asici .sayac{font:600 13.5px/1 var(--f-text);color:var(--gece-muted);margin-inline-start:auto;align-self:center}
 .asici .btn{background:var(--kandil);color:#0f1838;border-color:var(--kandil)}

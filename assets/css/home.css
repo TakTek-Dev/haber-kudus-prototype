@@ -58,7 +58,8 @@
 /* the lights switch: a lamp that is on or off */
 .isik-dugme{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 12px;font:700 13.5px/1 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--gece-text);border:1px solid var(--gece-line)}
 .isik-dugme:hover{border-color:var(--kandil)}
-.isik-dugme__lamba{width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--gece-rig);transition:all var(--t-mid) var(--ease-out)}
+.isik-dugme__lamba{position:relative;width:10px;height:10px;margin-top:6px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--gece-rig);transition:all var(--t-mid) var(--ease-out)}
+.isik-dugme__lamba::before{content:"";position:absolute;left:50%;bottom:100%;width:1px;height:7px;margin-left:-.5px;background:var(--gece-rig)}
 .isik-dugme[aria-pressed="true"] .isik-dugme__lamba{box-shadow:0 0 10px 3px rgba(255,170,60,.6);background:radial-gradient(circle at 42% 38%,#fffbe9 0 18%,#ffd27a 55%,#f3a23a)}
 
 /* ---------- son dakika: the moving mahya ---------- */
@@ -69,11 +70,18 @@
 .sondakika__ad .mahya .mahya__lamps circle{fill:#ff6d72}
 .sondakika__ad .mahya .mahya__halos circle{fill:rgba(255,80,90,.22)}
 .sondakika time{font:800 17.5px/1 var(--f-num);color:var(--kandil);letter-spacing:.02em}
-.sondakika__satir{position:relative;min-width:0;overflow:hidden}
-.sondakika__satir a{display:block;font:600 17.5px/1.35 var(--f-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sondakika__satir a.is-yaniyor{animation:yazi-yan 700ms var(--ease-out) both}
-@keyframes yazi-yan{from{-webkit-mask-position:100% 0;mask-position:100% 0}to{-webkit-mask-position:0 0;mask-position:0 0}}
-.sondakika__satir a{-webkit-mask-image:linear-gradient(90deg,#000 45%,rgba(0,0,0,.08) 55%);mask-image:linear-gradient(90deg,#000 45%,rgba(0,0,0,.08) 55%);-webkit-mask-size:220% 100%;mask-size:220% 100%;-webkit-mask-position:0 0;mask-position:0 0}
+/* the line is written by a column of three lamps that steps across it at lamp pitch,
+   the way Abdüllatif Efendi's moving mahyas advanced lamp by lamp */
+@property --kenar{syntax:'<length>';inherits:false;initial-value:4000px}
+.sondakika__satir{position:relative;min-width:0;overflow:hidden;padding-inline-end:14px}
+.sondakika__satir a{display:block;font:600 17.5px/1.35 var(--f-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  -webkit-mask-image:linear-gradient(90deg,#000 var(--kenar),transparent var(--kenar));mask-image:linear-gradient(90deg,#000 var(--kenar),transparent var(--kenar))}
+.sondakika__satir a.is-yaniyor{animation:sd-yaz var(--sure,900ms) steps(var(--adim,40),end) both}
+@keyframes sd-yaz{from{--kenar:0px}to{--kenar:var(--w,4000px)}}
+.sondakika__yazici{position:absolute;top:50%;left:0;display:grid;gap:5px;margin-top:-13px;opacity:0;pointer-events:none}
+.sondakika__yazici i{display:block;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 42% 38%,#fffbe9 0 18%,#ffd27a 55%,#f3a23a);box-shadow:0 0 8px 2px rgba(255,170,60,.6)}
+.sondakika__satir.is-yaziyor .sondakika__yazici{animation:sd-yazici var(--sure,900ms) steps(var(--adim,40),end) both}
+@keyframes sd-yazici{0%{opacity:1;transform:translateX(0)}96%{opacity:1}100%{opacity:0;transform:translateX(var(--w,0px))}}
 .sondakika__kontrol{display:flex;align-items:center;gap:2px;font:600 13.5px/1 var(--f-text);color:var(--gece-muted)}
 .sondakika__kontrol button{display:grid;place-items:center;width:40px;height:40px;color:var(--gece-text)}
 .sondakika__kontrol button:hover{color:var(--kandil)}
@@ -124,8 +132,8 @@
 
 /* number of the day: lamps on a strip of night */
 .rakam{background:var(--gece);color:var(--gece-text);padding:20px 20px 18px;position:relative}
-.rakam__ad{font:700 12px/1 var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--kandil)}
-.rakam .mahya{height:118px;width:auto;max-width:100%;margin:20px 0 14px}
+.rakam__ad{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.rakam .mahya{height:118px;width:auto;max-width:100%;margin:4px 0 14px}
 .rakam .mahya .mahya__rope{opacity:.3}
 .rakam p{font-size:15.5px;line-height:1.45;color:var(--gece-text)}
 .rakam .kaynak{color:var(--gece-muted);margin-top:10px;display:block;padding-top:10px;border-top:1px solid var(--gece-line)}
@@ -205,8 +213,9 @@
 .analiz__izgara{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
 .analiz__izgara article{padding:20px 24px 4px;border-inline-start:1px solid var(--line);min-width:0}
 .analiz__izgara article:first-child{padding-inline-start:0;border-inline-start:0}
-.analiz__izgara .yazar{font:700 12px/1.3 var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.analiz__izgara h3{font:600 22px/1.25 var(--f-text);margin:10px 0 10px;text-wrap:balance}
+.analiz__izgara .meta{margin-top:12px}
+.analiz__izgara .yazar{font:700 13.5px/1 var(--f-head);color:var(--ink-2)}
+.analiz__izgara h3{font:600 22px/1.3 var(--f-text);margin:4px 0 10px;text-wrap:balance}
 .analiz__izgara p{font-size:15.5px;line-height:1.55;color:var(--ink-2)}
 .yer-tutucu{display:inline-block;border:1px dashed var(--line-2);padding:2px 8px;font:600 12px/1.4 var(--f-text);color:var(--muted);text-transform:none;letter-spacing:0}
 
@@ -240,7 +249,7 @@
 .dip__mahya .mahya__rope{opacity:.28}
 .dip__izgara{display:grid;grid-template-columns:minmax(0,4fr) repeat(3,minmax(0,2fr));gap:clamp(24px,3vw,40px);padding:28px 0 36px;border-top:1px solid var(--gece-line)}
 .dip__izgara h2{font:700 13.5px/1 var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--gece-muted);margin-bottom:12px}
-.dip__izgara li a{display:inline-flex;align-items:center;min-height:34px;font-size:15.5px;color:var(--gece-text)}
+.dip__izgara li a{display:inline-flex;align-items:center;min-height:44px;font-size:15.5px;color:var(--gece-text)}
 .dip__izgara p{font-size:15.5px;line-height:1.6;color:var(--gece-muted)}
 .dip__izgara .marka{display:flex;align-items:center;gap:14px;margin-bottom:14px}
 .dip__izgara .marka svg{width:44px;height:44px}
@@ -317,13 +326,23 @@
   .gok .minare[data-minare="sag"]{inset-inline-end:-10px}
   .isik-dugme [data-isik-etiket]{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
   .isik-dugme{width:44px;justify-content:center;padding:0}
-  .sondakika .wrap{grid-template-columns:auto minmax(0,1fr);gap:6px 12px;padding-block:10px}
-  .sondakika__ad{grid-column:1}
-  .sondakika time{grid-column:2;justify-self:end}
-  .sondakika__satir{grid-column:1 / -1}
-  .sondakika__satir a{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-  .sondakika__kontrol{display:none}
-  .manset__foto{margin-inline:calc(var(--gutter) * -1)}
+  .sondakika .wrap{grid-template-columns:auto minmax(0,1fr) auto;gap:6px 8px;padding-block:8px 12px}
+  .sondakika__ad{grid-column:1;grid-row:1}
+  .sondakika time{grid-column:2;grid-row:1;justify-self:end}
+  .sondakika__kontrol{grid-column:3;grid-row:1}
+  .sondakika__kontrol [data-sd="geri"],.sondakika__kontrol [data-sd="ileri"],.sondakika__kontrol .sira{display:none}
+  .sondakika__satir{grid-column:1 / -1;grid-row:2}
+  .sondakika__satir a{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;-webkit-mask-image:none;mask-image:none}
+  .sondakika__satir a.is-yaniyor{animation:none}
+  .sondakika__yazici{display:none}
+  .manset__metin{display:contents}
+  .manset .h-manset{order:1}
+  .manset .lede{order:2}
+  .manset__metin > .meta{order:3}
+  .manset__foto{order:4;margin-inline:calc(var(--gutter) * -1)}
+  .manset__foto .foto{aspect-ratio:16/9}
+  .gelisme{order:5}
+  .manset__izgara{gap:16px}
   .manset__foto figcaption{padding-inline:var(--gutter)}
   .sira-2{grid-template-columns:1fr}
   .sira-2 .yan{grid-template-columns:1fr}

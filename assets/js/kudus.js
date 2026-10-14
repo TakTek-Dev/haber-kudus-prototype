@@ -12,7 +12,7 @@
 
   /* ---------- lights switch: day page or night page ---------- */
   const switches = document.querySelectorAll('[data-isik]');
-  function setTheme(dark, animate) {
+  function setTheme(dark, animate, from) {
     doc.dataset.theme = dark ? 'dark' : 'light';
     store.set('hk-tema', dark ? 'dark' : 'light');
     switches.forEach((b) => {
@@ -22,15 +22,19 @@
       if (label) label.textContent = dark ? 'Işıkları söndür' : 'Işıkları yak';
     });
     if (animate && dark && !reduce) {
-      // every lamp on the page comes on, nearest the switch first
+      // the day's unlit lamps (ink numerals) come on, nearest the switch first
       doc.classList.add('is-yakiliyor');
-      document.querySelectorAll('.mahya--night').forEach((m, k) => {
-        setTimeout(() => window.Mahya && Mahya.light(m, { duration: 700 }), k * 90);
-      });
-      setTimeout(() => doc.classList.remove('is-yakiliyor'), 1400);
+      const o = from ? from.getBoundingClientRect() : { left: innerWidth, top: 0, width: 0, height: 0 };
+      const ox = o.left + o.width / 2, oy = o.top + o.height / 2;
+      const seen = [...document.querySelectorAll('.mahya--mono')].map((m) => {
+        const r = m.getBoundingClientRect();
+        return { m, d: Math.hypot(r.left + r.width / 2 - ox, r.top + r.height / 2 - oy), vis: r.bottom > 0 && r.top < innerHeight };
+      }).filter((x) => x.vis).sort((a, b) => a.d - b.d);
+      seen.forEach((x, k) => setTimeout(() => window.Mahya && Mahya.light(x.m, { duration: 520 }), 120 + k * 110));
+      setTimeout(() => doc.classList.remove('is-yakiliyor'), 1600);
     }
   }
-  switches.forEach((b) => b.addEventListener('click', () => setTheme(doc.dataset.theme !== 'dark', true)));
+  switches.forEach((b) => b.addEventListener('click', () => setTheme(doc.dataset.theme !== 'dark', true, b)));
   setTheme(doc.dataset.theme === 'dark', false);
 
   /* ---------- lamps light the first time they are seen ---------- */
