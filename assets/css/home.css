@@ -60,6 +60,8 @@
 .isik-dugme:hover{border-color:var(--kandil)}
 .isik-dugme__lamba{position:relative;width:10px;height:10px;margin-top:6px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--gece-rig);transition:all var(--t-mid) var(--ease-out)}
 .isik-dugme__lamba::before{content:"";position:absolute;left:50%;bottom:100%;width:1px;height:7px;margin-left:-.5px;background:var(--gece-rig)}
+.isik-dugme.is-yandi .isik-dugme__lamba{animation:dugme-yan 900ms var(--ease-out)}
+@keyframes dugme-yan{0%{transform:scale(.6);filter:brightness(2.2)}40%{transform:scale(1.5)}100%{transform:none;filter:none}}
 .isik-dugme[aria-pressed="true"] .isik-dugme__lamba{box-shadow:0 0 10px 3px rgba(255,170,60,.6);background:radial-gradient(circle at 42% 38%,#fffbe9 0 18%,#ffd27a 55%,#f3a23a)}
 
 /* ---------- son dakika: the moving mahya ---------- */
@@ -82,6 +84,10 @@
 .sondakika__yazici i{display:block;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 42% 38%,#fffbe9 0 18%,#ffd27a 55%,#f3a23a);box-shadow:0 0 8px 2px rgba(255,170,60,.6)}
 .sondakika__satir.is-yaziyor .sondakika__yazici{animation:sd-yazici var(--sure,900ms) steps(var(--adim,40),end) both}
 @keyframes sd-yazici{0%{opacity:1;transform:translateX(0)}96%{opacity:1}100%{opacity:0;transform:translateX(var(--w,0px))}}
+@property --k1{syntax:'<length>';inherits:false;initial-value:4000px}
+@property --k2{syntax:'<length>';inherits:false;initial-value:4000px}
+@keyframes sd-yaz2{0%{--k1:0px;--k2:0px}50%{--k1:var(--w,4000px);--k2:0px}100%{--k1:var(--w,4000px);--k2:var(--w,4000px)}}
+@keyframes sd-yazici2{0%{opacity:1;transform:translate(0,0)}49.9%{transform:translate(var(--w,0px),0)}50%{transform:translate(0,var(--lh,24px))}96%{opacity:1}100%{opacity:0;transform:translate(var(--w,0px),var(--lh,24px))}}
 .sondakika__kontrol{display:flex;align-items:center;gap:2px;font:600 13.5px/1 var(--f-text);color:var(--gece-muted)}
 .sondakika__kontrol button{display:grid;place-items:center;width:40px;height:40px;color:var(--gece-text)}
 .sondakika__kontrol button:hover{color:var(--kandil)}
@@ -332,9 +338,16 @@
   .sondakika__kontrol{grid-column:3;grid-row:1}
   .sondakika__kontrol [data-sd="geri"],.sondakika__kontrol [data-sd="ileri"],.sondakika__kontrol .sira{display:none}
   .sondakika__satir{grid-column:1 / -1;grid-row:2}
-  .sondakika__satir a{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;-webkit-mask-image:none;mask-image:none}
-  .sondakika__satir a.is-yaniyor{animation:none}
-  .sondakika__yazici{display:none}
+  /* two lines, written one after the other by the same lamp column */
+  .sondakika__satir{padding-inline-end:10px;--lh:23.6px}
+  .sondakika__satir a{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;height:calc(2 * 23.6px);line-height:23.6px;
+    -webkit-mask-image:linear-gradient(90deg,#000 var(--k1),transparent var(--k1)),linear-gradient(90deg,#000 var(--k2),transparent var(--k2));
+    mask-image:linear-gradient(90deg,#000 var(--k1),transparent var(--k1)),linear-gradient(90deg,#000 var(--k2),transparent var(--k2));
+    -webkit-mask-size:100% 50%,100% 50%;mask-size:100% 50%,100% 50%;-webkit-mask-position:0 0,0 100%;mask-position:0 0,0 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+  .sondakika__satir a.is-yaniyor{animation:sd-yaz2 var(--sure,1600ms) steps(var(--adim,24),end) both}
+  .sondakika__yazici{top:0;margin-top:1px;gap:3px}
+  .sondakika__yazici i{width:5px;height:5px}
+  .sondakika__satir.is-yaziyor .sondakika__yazici{animation:sd-yazici2 var(--sure,1600ms) steps(var(--adim,24),end) both}
   .manset__metin{display:contents}
   .manset .h-manset{order:1}
   .manset .lede{order:2}

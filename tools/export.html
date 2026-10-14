@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
 <title>Haber Kudüs — dışa aktarım</title>
-<link rel="stylesheet" href="../assets/css/fonts.css?v=2">
-<link rel="stylesheet" href="../assets/css/kudus.css?v=2">
+<link rel="stylesheet" href="../assets/css/fonts.css?v=3">
+<link rel="stylesheet" href="../assets/css/kudus.css?v=3">
 <style>
 html,body{margin:0;background:#0f1838;overflow:hidden}
 .sahne{position:relative;overflow:hidden;background:linear-gradient(180deg,#0a1230 0%,#0f1838 60%,#16234f 100%);color:#eef0f7}
@@ -16,7 +16,7 @@ html,body{margin:0;background:#0f1838;overflow:hidden}
 .sahne .yazi{position:absolute;left:0;right:0;text-align:center;font-family:var(--f-text)}
 .sahne .yer-isareti{position:absolute;outline:2px dashed rgba(255,193,94,.0)}
 </style>
-<script src="../assets/js/mahya.js?v=2"></script>
+<script src="../assets/js/mahya.js?v=3"></script>
 </head>
 <body>
 <div id="s" class="sahne"></div>
@@ -24,7 +24,7 @@ html,body{margin:0;background:#0f1838;overflow:hidden}
 // ?k=<key> renders one export at its exact pixel size
 const k = new URLSearchParams(location.search).get('k') || 'og-ana';
 const s = document.getElementById('s');
-const minare = (h, side, inset) => `<img class="minare" src="../assets/brand/minare.svg?v=2" style="height:${h}px;${side}:${inset}px;bottom:${-h * 0.22}px" alt="">`;
+const minare = (h, side, inset) => `<img class="minare" src="../assets/brand/minare.svg?v=3" style="height:${h}px;${side}:${inset}px;bottom:${-h * 0.22}px" alt="">`;
 const lit = (text, id, o) => Mahya.svg(text, Object.assign({ mode: 'night', id }, o || {}));
 const ropeAt = (svgW, svgH, vb) => (Mahya.ROPE - vb[1]) / vb[3] * svgH;
 function scene(W, H, opts) {
@@ -44,7 +44,7 @@ function scene(W, H, opts) {
 function mark(W, mode) {
   s.style.width = W + 'px'; s.style.height = W + 'px';
   if (mode === 'gun') s.classList.add('gun');
-  s.innerHTML = `<img src="../assets/brand/${W <= 64 ? 'favicon' : mode === 'gun' ? 'isaret-gunduz' : 'isaret-gece'}.svg?v=2" style="width:${W}px;height:${W}px;display:block" alt="">`;
+  s.innerHTML = `<img src="../assets/brand/${W <= 64 ? 'favicon' : mode === 'gun' ? 'isaret-gunduz' : 'isaret-gece'}.svg?v=3" style="width:${W}px;height:${W}px;display:block" alt="">`;
 }
 const jobs = {
   'og-ana': () => scene(1200, 630, { w: 860, minare: 640, inset: 30, ropeIn: 56, lift: 34, alt: "Kudüs'ten, saati saatine.", altGap: 34, altSize: 30, ust: 'Kudüs haberleri · Türkçe', ustY: 70, ustSize: 18 }),

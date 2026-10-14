@@ -21,11 +21,11 @@ window.EDITION = {
 
   sosyal: {
     sonDakika: { yer: 'Muhmas', saat: '14 Ekim, 09.00', baslik: "Yerleşimciler Muhmas'ta bir camiyi, bir zeytin ağacını ve bir aracı ateşe verdi", kaynak: 'Kudüs Valiliği / WAFA' },
-    haber: { yer: 'Silvan', saat: '13 Ekim, 12.18', baslik: "İsrail güçleri Silvan'da Selayime ailesinin iki evini yıktı", kaynak: 'Kudüs Valiliği / WAFA', foto: 'assets/img/arsiv/silvan.jpg?v=2', fotoAlt: "Silvan'da yamaca kurulmuş evler" },
+    haber: { yer: 'Silvan', saat: '13 Ekim, 12.18', baslik: "İsrail güçleri Silvan'da Selayime ailesinin iki evini yıktı", kaynak: 'Kudüs Valiliği / WAFA', foto: 'assets/img/arsiv/silvan.jpg?v=3', fotoAlt: "Silvan'da yamaca kurulmuş evler" },
     rakam: { sayi: '430+', etiket: "2026 başından bu yana Kudüs'te yıkılan ev ve yapı", kaynak: 'Fahri Ebu Diyab / WAFA', tarih: '14 Ekim 2026' },
-    story: { yer: 'Mescid-i Aksa · 13 Ekim', baslik: "133 İsrailli, polis korumasında Aksa'ya girdi", foto: 'assets/img/arsiv/kubbetus-sahra-kemer.jpg?v=2', fotoAlt: "Mevazin kemerlerinin arasından Kubbetü's-Sahra" },
+    story: { yer: 'Mescid-i Aksa · 13 Ekim', baslik: "133 İsrailli, polis korumasında Aksa'ya girdi", foto: 'assets/img/arsiv/kubbetus-sahra-kemer.jpg?v=3', fotoAlt: "Mevazin kemerlerinin arasından Kubbetü's-Sahra" },
     telegram: { yer: 'İsaviye', saat: '10.23', baslik: "İsrail güçleri İsaviye'de bir çocuğu gözaltına aldı", ozet: "Kudüs Valiliğine göre İsrail güçleri sabah saatlerinde İsaviye'de bir evi basarak Musa Şadi Mustafa adlı çocuğu gözaltına aldı; çocuğun yaşı açıklanmadı.", kaynak: 'Kudüs Valiliği / WAFA' },
-    altBant: { baslik: 'Müftü: Yerleşimcilerin el koyduğu zeytini almak haram', yer: 'Kudüs', saat: '13 Ekim, 14.48', foto: 'assets/img/arsiv/zeytin-agaclari.jpg?v=2', fotoAlt: "Kudüs'te Getsemani Bahçesi'ndeki yaşlı zeytin ağaçları" }
+    altBant: { baslik: 'Müftü: Yerleşimcilerin el koyduğu zeytini almak haram', yer: 'Kudüs', saat: '13 Ekim, 14.48', foto: 'assets/img/arsiv/zeytin-agaclari.jpg?v=3', fotoAlt: "Kudüs'te Getsemani Bahçesi'ndeki yaşlı zeytin ağaçları" }
   },
 
   olcek: {

@@ -10,6 +10,16 @@
     sset(k, v) { try { sessionStorage.setItem(k, v); } catch (e) { /* private mode */ } }
   };
 
+  /* ---------- lamps light the first time they are seen ---------- */
+  const lit = new WeakSet();
+  function lightUp(m) {
+    if (lit.has(m) || !window.Mahya) return;
+    lit.add(m);
+    Mahya.light(m, { duration: +m.dataset.sure || (m.classList.contains('mahya--mono') ? 520 : 900) }).then(() => Mahya.flicker(m, 0.05));
+  }
+  const watch = 'IntersectionObserver' in window ? new IntersectionObserver((es) => {
+    es.forEach((e) => { if (e.isIntersecting) { lightUp(e.target); watch.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -12% 0px' }) : null;
   /* ---------- lights switch: day page or night page ---------- */
   const switches = document.querySelectorAll('[data-isik]');
   function setTheme(dark, animate, from) {
@@ -31,22 +41,19 @@
         return { m, d: Math.hypot(r.left + r.width / 2 - ox, r.top + r.height / 2 - oy), vis: r.bottom > 0 && r.top < innerHeight };
       }).filter((x) => x.vis).sort((a, b) => a.d - b.d);
       seen.forEach((x, k) => setTimeout(() => window.Mahya && Mahya.light(x.m, { duration: 520 }), 120 + k * 110));
+      // numerals further down wait dark and light lamp by lamp as they scroll in
+      if (watch) document.querySelectorAll('.mahya--mono').forEach((m) => {
+        const r = m.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < innerHeight) return;
+        lit.delete(m); m.classList.remove('is-lit'); m.classList.add('is-armed'); watch.observe(m);
+      });
+      if (from) { from.classList.remove('is-yandi'); void from.offsetWidth; from.classList.add('is-yandi'); }
       setTimeout(() => doc.classList.remove('is-yakiliyor'), 1600);
     }
   }
   switches.forEach((b) => b.addEventListener('click', () => setTheme(doc.dataset.theme !== 'dark', true, b)));
   setTheme(doc.dataset.theme === 'dark', false);
 
-  /* ---------- lamps light the first time they are seen ---------- */
-  const lit = new WeakSet();
-  function lightUp(m) {
-    if (lit.has(m) || !window.Mahya) return;
-    lit.add(m);
-    Mahya.light(m, { duration: +m.dataset.sure || 900 }).then(() => Mahya.flicker(m, 0.05));
-  }
-  const watch = 'IntersectionObserver' in window ? new IntersectionObserver((es) => {
-    es.forEach((e) => { if (e.isIntersecting) { lightUp(e.target); watch.unobserve(e.target); } });
-  }, { rootMargin: '0px 0px -12% 0px' }) : null;
   document.querySelectorAll('.mahya--night[data-yak]').forEach((m) => {
     if (reduce || !watch) return;
     m.classList.add('is-armed');
