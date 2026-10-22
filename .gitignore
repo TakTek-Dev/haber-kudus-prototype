@@ -5,11 +5,3 @@ research/*
 !research/.keep
 PRODUCT.md
 DESIGN*
-
-# unpublished until the client answers (see YENI_SAYFALAR in tools/build.mjs)
-haber.html
-aksa.html
-canli.html
-hakkimizda.html
-assets/css/sayfa.css
-assets/js/sayfa.js
