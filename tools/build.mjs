@@ -8,7 +8,7 @@ const root = new URL('..', import.meta.url);
 
 // The article, section, live and about pages stay local until the client answers.
 // Set to true to link them from the header, footer and manşet (and un-ignore them in .gitignore).
-const YENI_SAYFALAR = false;
+const YENI_SAYFALAR = true;
 const sec = (t) => t.replace(/<!--\?yeni-->([\s\S]*?)<!--\?eski-->([\s\S]*?)<!--\/\?-->/g, (m, y, e) => (YENI_SAYFALAR ? y : e));
 const P = (f) => new URL(f, root);
 vm.runInThisContext(readFileSync(P('assets/js/mahya.js'), 'utf8'));
